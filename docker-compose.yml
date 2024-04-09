@@ -1,0 +1,39 @@
+version: '3'
+services:
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: metabaserails_development
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345
+
+  web:
+    build: .
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/myapp
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres:12345@db/metabaserails_development
+
+  metabase:
+    image: metabase/metabase:latest
+    ports:
+      - "3001:3000"
+    depends_on:
+      - db
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_DBNAME: metabaserails_development
+      MB_DB_PORT: 5432
+      MB_DB_USER: postgres
+      MB_DB_PASS: 12345
+      MB_DB_HOST: db
+
+volumes:
+  postgres_data:

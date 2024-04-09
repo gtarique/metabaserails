@@ -1,0 +1,56 @@
+---
+engine_version: 0.4.25
+file_version: 2024-01-30 10:01:15.421255000 Z
+resources:
+- name: post
+  preferences:
+    columns:
+    - access_type: hidden
+      name: updated_at
+    - access_type: hidden
+      name: created_at
+  updated_at: 2024-01-30 10:01:15.421255000 +00:00
+configs:
+- key: header.links
+  value:
+  - name: "⭐ Star on GitHub"
+    path: https://github.com/motor-admin/motor-admin-rails
+  updated_at: 2024-01-30 09:55:22.125689000 +00:00
+queries: []
+dashboards: []
+forms:
+- id: 1
+  name: books
+  http_method: POST
+  api_path: "/books"
+  description:
+  preferences:
+    fields:
+    - display_name: name
+      name: name
+      field_type: input
+      default_value: ''
+      validators: []
+    - display_name: content
+      name: content
+      field_type: input
+      default_value: ''
+      validators: []
+    request_type: rest
+  api_config_name: origin
+  tags: []
+  updated_at: 2024-01-30 09:15:24.149775000 +00:00
+alerts: []
+api_configs:
+- id: 1
+  name: origin
+  url: "/"
+  preferences: {}
+  description:
+  updated_at: 2024-01-30 09:55:22.136103000 +00:00
+- id: 2
+  name: books
+  url: "/books"
+  preferences: {}
+  description:
+  updated_at: 2024-01-30 09:16:22.506908000 +00:00
